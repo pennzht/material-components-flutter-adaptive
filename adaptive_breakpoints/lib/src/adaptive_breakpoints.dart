@@ -100,13 +100,13 @@ extension AdaptiveWindowTypeExtension on AdaptiveWindowType {
     }
   }
 
-  bool operator <=(Object other) => _operatorMap[this]! <= _operatorMap[other as AdaptiveWindowType]!;
+  bool operator <=(AdaptiveWindowType other) => _operatorMap[this]! <= _operatorMap[other]!;
 
-  bool operator <(Object other) => _operatorMap[this]! < _operatorMap[other as AdaptiveWindowType]!;
+  bool operator <(AdaptiveWindowType other) => _operatorMap[this]! < _operatorMap[other]!;
 
-  bool operator >=(Object other) => _operatorMap[this]! >= _operatorMap[other as AdaptiveWindowType]!;
+  bool operator >=(AdaptiveWindowType other) => _operatorMap[this]! >= _operatorMap[other]!;
 
-  bool operator >(Object other) => _operatorMap[this]! > _operatorMap[other as AdaptiveWindowType]!;
+  bool operator >(AdaptiveWindowType other) => _operatorMap[this]! > _operatorMap[other]!;
 }
 
 /// This class represents the Material breakpoint system entry.
@@ -120,11 +120,7 @@ class BreakpointSystemEntry {
     required this.columns,
     required this.margin,
     required this.gutter,
-  })  : assert(range != null),
-        assert(adaptiveWindowType != null),
-        assert(columns != null),
-        assert(margin != null),
-        assert(gutter != null);
+  });
 
   /// The breakpoint range values represents a width range.
   final RangeValues range;
