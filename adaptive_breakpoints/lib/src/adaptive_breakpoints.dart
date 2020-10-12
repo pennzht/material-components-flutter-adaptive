@@ -100,26 +100,26 @@ extension AdaptiveWindowTypeExtension on AdaptiveWindowType {
     }
   }
 
-  bool operator <=(Object other) => _operatorMap[this] <= _operatorMap[other];
+  bool operator <=(Object other) => _operatorMap[this]! <= _operatorMap[other as AdaptiveWindowType]!;
 
-  bool operator <(Object other) => _operatorMap[this] < _operatorMap[other];
+  bool operator <(Object other) => _operatorMap[this]! < _operatorMap[other as AdaptiveWindowType]!;
 
-  bool operator >=(Object other) => _operatorMap[this] >= _operatorMap[other];
+  bool operator >=(Object other) => _operatorMap[this]! >= _operatorMap[other as AdaptiveWindowType]!;
 
-  bool operator >(Object other) => _operatorMap[this] > _operatorMap[other];
+  bool operator >(Object other) => _operatorMap[this]! > _operatorMap[other as AdaptiveWindowType]!;
 }
 
 /// This class represents the Material breakpoint system entry.
 /// https://material.io/design/layout/responsive-layout-grid.html#breakpoints
 class BreakpointSystemEntry {
   const BreakpointSystemEntry({
-    @required this.range,
+    required this.range,
     this.portrait,
     this.landscape,
-    @required this.adaptiveWindowType,
-    @required this.columns,
-    @required this.margin,
-    @required this.gutter,
+    required this.adaptiveWindowType,
+    required this.columns,
+    required this.margin,
+    required this.gutter,
   })  : assert(range != null),
         assert(adaptiveWindowType != null),
         assert(columns != null),
@@ -130,10 +130,10 @@ class BreakpointSystemEntry {
   final RangeValues range;
 
   /// Type of device which uses this breakpoint range in portrait view.
-  final String portrait;
+  final String? portrait;
 
   /// Type of device which uses this breakpoint range in landscape view.
-  final String landscape;
+  final String? landscape;
 
   /// Material generalizes the device size into five different windows: extra
   /// small, small, medium, large, and extra large.
@@ -292,7 +292,7 @@ AdaptiveWindowType getWindowType(BuildContext context) {
 /// function gives the developer access to the specific breakpoint entry and
 /// it's variables.
 BreakpointSystemEntry getBreakpointEntry(BuildContext context) {
-  double width = MediaQuery.of(context).size.width;
+  double width = MediaQuery.of(context)!.size.width;
   for (BreakpointSystemEntry entry in breakpointSystem) {
     if (entry.range.start <= width && width < entry.range.end + 1) {
       return entry;
