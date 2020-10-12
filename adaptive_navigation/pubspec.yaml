@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  adaptive_breakpoints: ^0.0.3
+  adaptive_breakpoints:
+    path: ../adaptive_breakpoints/
 
 dev_dependencies:
   flutter_test:
