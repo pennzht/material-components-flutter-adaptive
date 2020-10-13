@@ -33,8 +33,8 @@ class AdaptiveScaffoldDestination {
   final IconData icon;
 
   const AdaptiveScaffoldDestination({
-    required this.title,
-    required this.icon,
+    @required this.title,
+    @required this.icon,
   })  : assert(title != null),
         assert(icon != null);
 }
@@ -44,7 +44,7 @@ class AdaptiveScaffoldDestination {
 /// defined in the [destinations] parameter.
 class AdaptiveNavigationScaffold extends StatelessWidget {
   const AdaptiveNavigationScaffold({
-    Key? key,
+    Key key,
     this.appBar,
     this.body,
     this.floatingActionButton,
@@ -63,8 +63,8 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     this.drawerEdgeDragWidth,
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
-    required this.selectedIndex,
-    required this.destinations,
+    @required this.selectedIndex,
+    @required this.destinations,
     this.onDestinationSelected,
     this.navigationTypeResolver,
     this.drawerHeader,
@@ -75,41 +75,41 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
         super(key: key);
 
   /// See [Scaffold.appBar].
-  final Widget? appBar;
+  final Widget appBar;
 
   /// See [Scaffold.body].
-  final Widget? body;
+  final Widget body;
 
   /// See [Scaffold.floatingActionButton].
-  final FloatingActionButton? floatingActionButton;
+  final FloatingActionButton floatingActionButton;
 
   /// See [Scaffold.floatingActionButtonLocation].
   ///
   /// Ignored if [fabInRail] is true.
-  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final FloatingActionButtonLocation floatingActionButtonLocation;
 
   /// See [Scaffold.floatingActionButtonAnimator].
   ///
   /// Ignored if [fabInRail] is true.
-  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final FloatingActionButtonAnimator floatingActionButtonAnimator;
 
   /// See [Scaffold.persistentFooterButtons].
-  final List<Widget>? persistentFooterButtons;
+  final List<Widget> persistentFooterButtons;
 
   /// See [Scaffold.endDrawer].
-  final Widget? endDrawer;
+  final Widget endDrawer;
 
   /// See [Scaffold.drawerScrimColor].
-  final Color? drawerScrimColor;
+  final Color drawerScrimColor;
 
   /// See [Scaffold.backgroundColor].
-  final Color? backgroundColor;
+  final Color backgroundColor;
 
   /// See [Scaffold.bottomSheet].
-  final Widget? bottomSheet;
+  final Widget bottomSheet;
 
   /// See [Scaffold.resizeToAvoidBottomInset].
-  final bool? resizeToAvoidBottomInset;
+  final bool resizeToAvoidBottomInset;
 
   /// See [Scaffold.primary].
   final bool primary;
@@ -124,7 +124,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
   final bool extendBodyBehindAppBar;
 
   /// See [Scaffold.drawerEdgeDragWidth].
-  final double? drawerEdgeDragWidth;
+  final double drawerEdgeDragWidth;
 
   /// See [Scaffold.drawerEnableOpenDragGesture].
   final bool drawerEnableOpenDragGesture;
@@ -148,15 +148,15 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
   /// The stateful widget that creates the adaptive scaffold needs to keep
   /// track of the index of the selected [AdaptiveScaffoldDestination] and call
   /// `setState` to rebuild the adaptive scaffold with the new [selectedIndex].
-  final ValueChanged<int>? onDestinationSelected;
+  final ValueChanged<int> onDestinationSelected;
 
   /// Determines the navigation type that the scaffold uses.
-  final NavigationTypeResolver? navigationTypeResolver;
+  final NavigationTypeResolver navigationTypeResolver;
 
   /// The leading item in the drawer when the navigation has a drawer.
   ///
   /// If null, then there is no header.
-  final Widget? drawerHeader;
+  final Widget drawerHeader;
 
   /// Whether the [floatingActionButton] is inside or the rail or in the regular
   /// spot.
@@ -183,14 +183,14 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          if (drawerHeader != null) drawerHeader!,
+          if (drawerHeader != null) drawerHeader,
           for (int i = 0; i < destinations.length; i++)
             ListTile(
               leading: Icon(destinations[i].icon),
               title: Text(destinations[i].title),
               onTap: () {
                 if (onDestinationSelected != null) {
-                  onDestinationSelected!(i);
+                  onDestinationSelected(i);
                 }
               },
             )
@@ -211,10 +211,10 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
         : [];
     return Scaffold(
       body: body,
-      appBar: appBar as PreferredSizeWidget?,
+      appBar: appBar,
       drawer: drawerDestinations.isEmpty
           ? null
-          : _defaultDrawer(drawerDestinations as List<AdaptiveScaffoldDestination>),
+          : _defaultDrawer(drawerDestinations),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           for (final destination in bottomDestinations)
@@ -242,10 +242,10 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
             includeBaseDestinationsInMenu ? 0 : railDestinationsOverflow)
         : [];
     return Scaffold(
-      appBar: appBar as PreferredSizeWidget?,
+      appBar: appBar,
       drawer: drawerDestinations.isEmpty
           ? null
-          : _defaultDrawer(drawerDestinations as List<AdaptiveScaffoldDestination>),
+          : _defaultDrawer(drawerDestinations),
       body: Row(
         children: [
           NavigationRail(
@@ -265,7 +265,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
             thickness: 1,
           ),
           Expanded(
-            child: body!,
+            child: body,
           ),
         ],
       ),
@@ -291,11 +291,11 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
   Widget _buildNavigationDrawerScaffold() {
     return Scaffold(
       body: body,
-      appBar: appBar as PreferredSizeWidget?,
+      appBar: appBar,
       drawer: Drawer(
         child: Column(
           children: [
-            if (drawerHeader != null) drawerHeader!,
+            if (drawerHeader != null) drawerHeader,
             for (final destination in destinations)
               ListTile(
                 leading: Icon(destination.icon),
@@ -331,7 +331,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
         Drawer(
           child: Column(
             children: [
-              if (drawerHeader != null) drawerHeader!,
+              if (drawerHeader != null) drawerHeader,
               for (final destination in destinations)
                 ListTile(
                   leading: Icon(destination.icon),
@@ -348,7 +348,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
         ),
         Expanded(
           child: Scaffold(
-            appBar: appBar as PreferredSizeWidget?,
+            appBar: appBar,
             body: body,
             floatingActionButton: floatingActionButton,
             floatingActionButtonLocation: floatingActionButtonLocation,
@@ -393,7 +393,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
   void _destinationTapped(AdaptiveScaffoldDestination destination) {
     final index = destinations.indexOf(destination);
     if (index != selectedIndex) {
-      onDestinationSelected!(index);
+      onDestinationSelected(index);
     }
   }
 }
