@@ -75,7 +75,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
         super(key: key);
 
   /// See [Scaffold.appBar].
-  final Widget appBar;
+  final PreferredSizeWidget appBar;
 
   /// See [Scaffold.body].
   final Widget body;
@@ -208,7 +208,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     final drawerDestinations = destinations.length > bottomNavigationOverflow
         ? destinations.sublist(
             includeBaseDestinationsInMenu ? 0 : bottomNavigationOverflow)
-        : [];
+        : <AdaptiveScaffoldDestination>[];
     return Scaffold(
       body: body,
       appBar: appBar,
