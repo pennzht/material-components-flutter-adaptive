@@ -77,7 +77,7 @@ void main() {
 
       box = tester.widget(find.byType(Container));
       expect(find.byType(Container), findsOneWidget);
-      expect((box as Container).color, adaptiveContainerColor);
+      expect(box.color, adaptiveContainerColor);
     },
   );
 }
