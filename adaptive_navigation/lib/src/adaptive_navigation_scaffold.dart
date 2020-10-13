@@ -35,8 +35,7 @@ class AdaptiveScaffoldDestination {
   const AdaptiveScaffoldDestination({
     required this.title,
     required this.icon,
-  })  : assert(title != null),
-        assert(icon != null);
+  });
 }
 
 /// A widget that adapts to the current display size, displaying a [Drawer],
@@ -70,9 +69,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     this.drawerHeader,
     this.fabInRail = true,
     this.includeBaseDestinationsInMenu = true,
-  })  : assert(selectedIndex != null),
-        assert(destinations != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// See [Scaffold.appBar].
   final PreferredSizeWidget? appBar;
@@ -387,7 +384,6 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
       case NavigationType.permanentDrawer:
         return _buildPermanentDrawerScaffold();
     }
-    throw Exception('Invalid navigation type: $navigationType');
   }
 
   void _destinationTapped(AdaptiveScaffoldDestination destination) {

@@ -95,11 +95,9 @@ class _AdaptiveContainer extends StatelessWidget {
     this.child,
     this.clipBehavior = Clip.none,
     required this.adaptiveConstraints,
-  })  : assert(adaptiveConstraints != null),
-        assert(margin == null || margin.isNonNegative),
+  })  : assert(margin == null || margin.isNonNegative),
         assert(padding == null || padding.isNonNegative),
         assert(decoration == null || decoration.debugAssertIsValid()),
-        assert(clipBehavior != null),
         assert(
             color == null || decoration == null,
             'Cannot provide both a color and a decoration\n'
